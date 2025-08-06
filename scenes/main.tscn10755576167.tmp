@@ -1,0 +1,199 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbrgy6fiw4w7k"]
+
+[ext_resource type="PackedScene" uid="uid://cmgy4tlylrku" path="res://scenes/game_manager.tscn" id="1_jyhfs"]
+[ext_resource type="Script" uid="uid://bbwmon1rgpfke" path="res://scenes/main.gd" id="1_tbgi4"]
+[ext_resource type="Script" uid="uid://dlf83uifjvjhv" path="res://scenes/dice_ui/dice_tray_ui.gd" id="3_jyhfs"]
+[ext_resource type="Theme" uid="uid://5ehaet6gumt4" path="res://custom_resources/zombie_theme.tres" id="3_sugp2"]
+[ext_resource type="Texture2D" uid="uid://prsmkqt2lbgy" path="res://assets/CuteDice - AssetPack_v1.0/test_unkown.png" id="3_tbgi4"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_tbgi4")
+
+[node name="GameManager" parent="." node_paths=PackedStringArray("barricade_health_bar", "vehicle_health_bar", "dice_tray") instance=ExtResource("1_jyhfs")]
+barricade_health_bar = NodePath("../StatsUI/VBoxContainer/BarricadeCounter/BarricadeHealth")
+vehicle_health_bar = NodePath("../StatsUI/VBoxContainer/VehicleCounter/VehicleHealth")
+dice_tray = NodePath("../DiceTrayUI/DiceTray")
+zombie_count = 1
+barricade_health = 100.0
+
+[node name="StatsUI" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StatsUI"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 190.0
+offset_bottom = 68.0
+
+[node name="ZombieCounter" type="HBoxContainer" parent="StatsUI/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="StatsUI/VBoxContainer/ZombieCounter"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Zombies:"
+horizontal_alignment = 2
+
+[node name="ZombieCount" type="Label" parent="StatsUI/VBoxContainer/ZombieCounter"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "99 (+1 Next Wave)"
+
+[node name="BarricadeCounter" type="HBoxContainer" parent="StatsUI/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="StatsUI/VBoxContainer/BarricadeCounter"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Barricade:"
+horizontal_alignment = 2
+
+[node name="BarricadeHealth" type="ProgressBar" parent="StatsUI/VBoxContainer/BarricadeCounter"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+step = 0.1
+value = 69.0
+
+[node name="VehicleCounter" type="HBoxContainer" parent="StatsUI/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="StatsUI/VBoxContainer/VehicleCounter"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Vehicle:"
+horizontal_alignment = 2
+
+[node name="VehicleHealth" type="ProgressBar" parent="StatsUI/VBoxContainer/VehicleCounter"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+step = 0.1
+value = 69.0
+
+[node name="DiceTrayUI" type="CanvasLayer" parent="."]
+script = ExtResource("3_jyhfs")
+
+[node name="ReadyButton" type="Button" parent="DiceTrayUI"]
+unique_name_in_owner = true
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -67.0
+offset_right = -10.0
+offset_bottom = -43.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("3_sugp2")
+text = "READY!"
+
+[node name="ResetButton" type="Button" parent="DiceTrayUI"]
+unique_name_in_owner = true
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -311.0
+offset_top = -67.0
+offset_right = -257.0
+offset_bottom = -43.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("3_sugp2")
+text = "RESET"
+
+[node name="DicePlaceHolder" type="HBoxContainer" parent="DiceTrayUI"]
+modulate = Color(1, 1, 1, 0.188235)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -87.5
+offset_top = -76.0
+offset_right = 87.5
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="DiceTrayUI/DicePlaceHolder"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("3_tbgi4")
+
+[node name="TextureRect2" type="TextureRect" parent="DiceTrayUI/DicePlaceHolder"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("3_tbgi4")
+
+[node name="TextureRect3" type="TextureRect" parent="DiceTrayUI/DicePlaceHolder"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("3_tbgi4")
+
+[node name="TextureRect4" type="TextureRect" parent="DiceTrayUI/DicePlaceHolder"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("3_tbgi4")
+
+[node name="DiceTray" type="HBoxContainer" parent="DiceTrayUI"]
+unique_name_in_owner = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -87.5
+offset_top = -76.0
+offset_right = 87.5
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DiceTrayUI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -52.0
+offset_top = -29.0
+offset_right = 52.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 4
+alignment = 1
+
+[node name="ShootZombieButton" type="Button" parent="DiceTrayUI/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("3_sugp2")
+text = "SHOOT ZOMBIE"
+
+[node name="BarricadeButton" type="Button" parent="DiceTrayUI/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_sugp2")
+text = "BARRICADE"
+
+[node name="VehicleButton" type="Button" parent="DiceTrayUI/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_sugp2")
+text = "REPAIR CAR"
+
+[connection signal="pressed" from="DiceTrayUI/ReadyButton" to="DiceTrayUI" method="_on_ready_button_pressed"]
+[connection signal="pressed" from="DiceTrayUI/ResetButton" to="DiceTrayUI" method="_on_reset_button_pressed"]
+[connection signal="pressed" from="DiceTrayUI/HBoxContainer/ShootZombieButton" to="DiceTrayUI" method="_on_shoot_zombie_button_pressed"]
+[connection signal="pressed" from="DiceTrayUI/HBoxContainer/BarricadeButton" to="DiceTrayUI" method="_on_barricade_button_pressed"]
+[connection signal="pressed" from="DiceTrayUI/HBoxContainer/VehicleButton" to="DiceTrayUI" method="_on_vehicle_button_pressed"]

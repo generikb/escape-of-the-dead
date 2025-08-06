@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://5ehaet6gumt4"]
+
+[ext_resource type="FontFile" uid="uid://b47ne6wxh0bad" path="res://assets/LycheeSoda.ttf" id="1_m3nhr"]
+
+[resource]
+default_font = ExtResource("1_m3nhr")

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="DiceSide" load_steps=3 format=3 uid="uid://c5gqgfkon3aut"]
+
+[ext_resource type="Texture2D" uid="uid://cv4b3nd0enmd0" path="res://assets/CuteDice - AssetPack_v1.0/dice_side_run.png" id="1_hlonk"]
+[ext_resource type="Script" uid="uid://bksi5xuwrh3ey" path="res://custom_resources/dice_side.gd" id="1_xojwv"]
+
+[resource]
+script = ExtResource("1_xojwv")
+icon = ExtResource("1_hlonk")
+success = false
+metadata/_custom_type_script = "uid://bksi5xuwrh3ey"

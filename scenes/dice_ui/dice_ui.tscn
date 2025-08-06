@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvd8leq3sjpsc"]
+
+[ext_resource type="Script" uid="uid://ckr2rdeqdrk1w" path="res://scenes/dice_ui/dice_ui.gd" id="1_auk0y"]
+[ext_resource type="Texture2D" uid="uid://prsmkqt2lbgy" path="res://assets/CuteDice - AssetPack_v1.0/test_unkown.png" id="2_amus8"]
+
+[node name="Dice_UI" type="Control"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_auk0y")
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_amus8")
+
+[connection signal="gui_input" from="Icon" to="." method="_on_icon_gui_input"]

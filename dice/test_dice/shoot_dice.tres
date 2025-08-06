@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Dice" load_steps=5 format=3 uid="uid://chknoi0rewyq8"]
+
+[ext_resource type="Script" uid="uid://dgh3jg7g1b0sn" path="res://custom_resources/dice.gd" id="1_u2spk"]
+[ext_resource type="Script" uid="uid://bksi5xuwrh3ey" path="res://custom_resources/dice_side.gd" id="2_xlwcb"]
+[ext_resource type="Resource" uid="uid://c2l0ublt4a7n2" path="res://dice/test_dice/dice_side_skull.tres" id="3_ju50n"]
+[ext_resource type="Resource" uid="uid://c7a57ia3q6vxs" path="res://dice/test_dice/dice_side_sword.tres" id="4_c1tcs"]
+
+[resource]
+script = ExtResource("1_u2spk")
+sides = Array[ExtResource("2_xlwcb")]([ExtResource("3_ju50n"), ExtResource("3_ju50n"), ExtResource("4_c1tcs"), ExtResource("4_c1tcs"), ExtResource("4_c1tcs"), ExtResource("4_c1tcs")])
+dice_type = 0
+metadata/_custom_type_script = "uid://dgh3jg7g1b0sn"
