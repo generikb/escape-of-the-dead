@@ -1,72 +1,139 @@
-[gd_scene load_steps=9 format=3 uid="uid://dbrgy6fiw4w7k"]
+[gd_scene load_steps=15 format=3 uid="uid://dbrgy6fiw4w7k"]
 
-[ext_resource type="PackedScene" uid="uid://cmgy4tlylrku" path="res://scenes/game_manager.tscn" id="1_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://cmgy4tlylrku" path="res://scenes/game_manager/game_manager.tscn" id="1_jyhfs"]
 [ext_resource type="Script" uid="uid://bbwmon1rgpfke" path="res://scenes/main.gd" id="1_tbgi4"]
 [ext_resource type="Script" uid="uid://dlf83uifjvjhv" path="res://scenes/dice_ui/dice_tray_ui.gd" id="3_jyhfs"]
 [ext_resource type="Theme" uid="uid://5ehaet6gumt4" path="res://custom_resources/zombie_theme.tres" id="3_sugp2"]
 [ext_resource type="Texture2D" uid="uid://prsmkqt2lbgy" path="res://assets/CuteDice - AssetPack_v1.0/test_unkown.png" id="3_tbgi4"]
+[ext_resource type="Script" uid="uid://bph3i67fpxsb6" path="res://scenes/zombie_area.gd" id="3_ya4ey"]
+[ext_resource type="Texture2D" uid="uid://bgxghjaca1hr" path="res://assets/dice_tray.png" id="4_85g3d"]
+[ext_resource type="Script" uid="uid://cxgvp62wajh20" path="res://scenes/game_stats.gd" id="4_eb6dy"]
 [ext_resource type="Script" uid="uid://4dcgycydl8xy" path="res://scenes/bonus_screen_ui.gd" id="6_tefeu"]
+[ext_resource type="Script" uid="uid://l6u0ex47h8qv" path="res://globals/button_jiggle.gd" id="7_choun"]
 [ext_resource type="StyleBox" uid="uid://bw8lvklne506r" path="res://custom_resources/popup_menu_style.tres" id="7_o6xl0"]
 [ext_resource type="Script" uid="uid://dq83l07v2tmp7" path="res://scenes/game_over_ui.gd" id="8_tipki"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ya4ey"]
+size = Vector2(20, 370)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eb6dy"]
+size = Vector2(653, 20)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_tbgi4")
 
 [node name="GameManager" parent="." instance=ExtResource("1_jyhfs")]
 
+[node name="GameBorder" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="GameBorder"]
+position = Vector2(129, 1)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBorder/StaticBody2D"]
+position = Vector2(-11, 180)
+shape = SubResource("RectangleShape2D_ya4ey")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="GameBorder"]
+position = Vector2(-110, 1)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBorder/StaticBody2D2"]
+position = Vector2(651, 180)
+shape = SubResource("RectangleShape2D_ya4ey")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="GameBorder"]
+position = Vector2(11, 64)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBorder/StaticBody2D3"]
+position = Vector2(322.5, -11)
+shape = SubResource("RectangleShape2D_eb6dy")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="GameBorder"]
+position = Vector2(-1, -65)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBorder/StaticBody2D4"]
+position = Vector2(323, 370)
+shape = SubResource("RectangleShape2D_eb6dy")
+
+[node name="ZombieArea" type="FlowContainer" parent="."]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 409.0
+offset_top = 96.0
+offset_right = 505.0
+offset_bottom = 192.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+size_flags_horizontal = 0
+script = ExtResource("3_ya4ey")
+
 [node name="StatsUI" type="CanvasLayer" parent="."]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="StatsUI"]
+[node name="GameStats" type="VBoxContainer" parent="StatsUI"]
+unique_name_in_owner = true
 offset_left = 4.0
 offset_top = 4.0
 offset_right = 190.0
 offset_bottom = 68.0
+script = ExtResource("4_eb6dy")
 
-[node name="ZombieCounter" type="HBoxContainer" parent="StatsUI/VBoxContainer"]
+[node name="ZombieCounter" type="HBoxContainer" parent="StatsUI/GameStats"]
 layout_mode = 2
 alignment = 2
 
-[node name="Label" type="Label" parent="StatsUI/VBoxContainer/ZombieCounter"]
+[node name="Label" type="Label" parent="StatsUI/GameStats/ZombieCounter"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Zombies:"
 horizontal_alignment = 2
 
-[node name="ZombieCount" type="Label" parent="StatsUI/VBoxContainer/ZombieCounter"]
+[node name="ZombieCount" type="Label" parent="StatsUI/GameStats/ZombieCounter"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 text = "99 (+1 Next Wave)"
 
-[node name="BarricadeCounter" type="HBoxContainer" parent="StatsUI/VBoxContainer"]
+[node name="BarricadeCounter" type="HBoxContainer" parent="StatsUI/GameStats"]
 layout_mode = 2
 alignment = 2
 
-[node name="Label" type="Label" parent="StatsUI/VBoxContainer/BarricadeCounter"]
+[node name="Label" type="Label" parent="StatsUI/GameStats/BarricadeCounter"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Barricade:"
 horizontal_alignment = 2
 
-[node name="BarricadeHealth" type="ProgressBar" parent="StatsUI/VBoxContainer/BarricadeCounter"]
+[node name="BarricadeHealth" type="ProgressBar" parent="StatsUI/GameStats/BarricadeCounter"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 step = 0.1
 value = 69.0
 
-[node name="VehicleCounter" type="HBoxContainer" parent="StatsUI/VBoxContainer"]
+[node name="VehicleCounter" type="HBoxContainer" parent="StatsUI/GameStats"]
 layout_mode = 2
 alignment = 2
 
-[node name="Label" type="Label" parent="StatsUI/VBoxContainer/VehicleCounter"]
+[node name="Label" type="Label" parent="StatsUI/GameStats/VehicleCounter"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Vehicle:"
 horizontal_alignment = 2
 
-[node name="VehicleHealth" type="ProgressBar" parent="StatsUI/VBoxContainer/VehicleCounter"]
+[node name="VehicleHealth" type="ProgressBar" parent="StatsUI/GameStats/VehicleCounter"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
@@ -93,124 +160,138 @@ layout_mode = 2
 text = "0"
 horizontal_alignment = 1
 
-[node name="DiceTrayUI" type="CanvasLayer" parent="."]
-script = ExtResource("3_jyhfs")
-
-[node name="ReadyButton" type="Button" parent="DiceTrayUI"]
+[node name="DiceTrayUI" type="CanvasLayer" parent="." node_paths=PackedStringArray("game_manager")]
 unique_name_in_owner = true
-anchors_preset = 3
-anchor_left = 1.0
+script = ExtResource("3_jyhfs")
+game_manager = NodePath("../GameManager")
+
+[node name="DiceSign" type="TextureRect" parent="DiceTrayUI"]
+unique_name_in_owner = true
+anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -64.0
-offset_top = -67.0
-offset_right = -10.0
-offset_bottom = -43.0
-grow_horizontal = 0
+offset_top = -7.0
+offset_right = 349.0
+offset_bottom = 120.0
 grow_vertical = 0
+mouse_filter = 2
+texture = ExtResource("4_85g3d")
+
+[node name="DiceTray" type="HBoxContainer" parent="DiceTrayUI/DiceSign"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 87.0
+offset_top = -89.0
+offset_right = 262.0
+offset_bottom = -49.0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="ReadyButton" type="Button" parent="DiceTrayUI/DiceSign"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 263.0
+offset_top = -78.0
+offset_right = 321.0
+offset_bottom = -54.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
 theme = ExtResource("3_sugp2")
 text = "READY!"
 
-[node name="ResetButton" type="Button" parent="DiceTrayUI"]
+[node name="ResetButton" type="Button" parent="DiceTrayUI/DiceSign"]
 unique_name_in_owner = true
-anchors_preset = 3
-anchor_left = 1.0
+layout_mode = 1
+anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -311.0
-offset_top = -67.0
-offset_right = -257.0
-offset_bottom = -43.0
-grow_horizontal = 0
+offset_left = 29.0
+offset_top = -80.0
+offset_right = 83.0
+offset_bottom = -56.0
 grow_vertical = 0
 theme = ExtResource("3_sugp2")
 text = "RESET"
 
-[node name="DicePlaceHolder" type="HBoxContainer" parent="DiceTrayUI"]
+[node name="DicePlaceHolder" type="HBoxContainer" parent="DiceTrayUI/DiceSign"]
+visible = false
 modulate = Color(1, 1, 1, 0.188235)
-anchors_preset = 7
-anchor_left = 0.5
+layout_mode = 2
 anchor_top = 1.0
-anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -87.5
-offset_top = -76.0
-offset_right = 87.5
-offset_bottom = -36.0
-grow_horizontal = 2
+offset_left = 87.0
+offset_top = -89.0
+offset_right = 262.0
+offset_bottom = -49.0
 grow_vertical = 0
+mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="DiceTrayUI/DicePlaceHolder"]
+[node name="TextureRect" type="TextureRect" parent="DiceTrayUI/DiceSign/DicePlaceHolder"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 texture = ExtResource("3_tbgi4")
 
-[node name="TextureRect2" type="TextureRect" parent="DiceTrayUI/DicePlaceHolder"]
+[node name="TextureRect2" type="TextureRect" parent="DiceTrayUI/DiceSign/DicePlaceHolder"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 texture = ExtResource("3_tbgi4")
 
-[node name="TextureRect3" type="TextureRect" parent="DiceTrayUI/DicePlaceHolder"]
+[node name="TextureRect3" type="TextureRect" parent="DiceTrayUI/DiceSign/DicePlaceHolder"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 texture = ExtResource("3_tbgi4")
 
-[node name="TextureRect4" type="TextureRect" parent="DiceTrayUI/DicePlaceHolder"]
+[node name="TextureRect4" type="TextureRect" parent="DiceTrayUI/DiceSign/DicePlaceHolder"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 texture = ExtResource("3_tbgi4")
 
-[node name="DiceTray" type="HBoxContainer" parent="DiceTrayUI"]
-unique_name_in_owner = true
-anchors_preset = 7
-anchor_left = 0.5
+[node name="HBoxContainer" type="HBoxContainer" parent="DiceTrayUI/DiceSign"]
+layout_mode = 2
 anchor_top = 1.0
-anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -87.5
-offset_top = -76.0
-offset_right = 87.5
-offset_bottom = -36.0
-grow_horizontal = 2
+offset_left = 35.0
+offset_top = -45.0
+offset_right = 319.0
+offset_bottom = -21.0
 grow_vertical = 0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="DiceTrayUI"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -52.0
-offset_top = -29.0
-offset_right = 52.0
-offset_bottom = -5.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_vertical = 4
+mouse_filter = 2
 alignment = 1
 
-[node name="ShootZombieButton" type="Button" parent="DiceTrayUI/HBoxContainer"]
+[node name="ShootZombieButton" type="Button" parent="DiceTrayUI/DiceSign/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
+focus_mode = 0
 theme = ExtResource("3_sugp2")
 text = "SHOOT ZOMBIE"
+script = ExtResource("7_choun")
 
-[node name="BarricadeButton" type="Button" parent="DiceTrayUI/HBoxContainer"]
+[node name="BarricadeButton" type="Button" parent="DiceTrayUI/DiceSign/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("3_sugp2")
 text = "BARRICADE"
+script = ExtResource("7_choun")
 
-[node name="VehicleButton" type="Button" parent="DiceTrayUI/HBoxContainer"]
+[node name="VehicleButton" type="Button" parent="DiceTrayUI/DiceSign/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("3_sugp2")
 text = "REPAIR CAR"
+script = ExtResource("7_choun")
 
 [node name="BonusScreenUI" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
 visible = false
 script = ExtResource("6_tefeu")
 
@@ -257,6 +338,7 @@ layout_mode = 2
 text = "Fix Barricade +30%"
 
 [node name="GameOverUI" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("8_tipki")
 
 [node name="PanelContainer" type="PanelContainer" parent="GameOverUI"]
@@ -292,14 +374,20 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Quit Game"
 
-[connection signal="pressed" from="DiceTrayUI/ReadyButton" to="DiceTrayUI" method="_on_ready_button_pressed"]
-[connection signal="pressed" from="DiceTrayUI/ResetButton" to="DiceTrayUI" method="_on_reset_button_pressed"]
-[connection signal="pressed" from="DiceTrayUI/HBoxContainer/ShootZombieButton" to="DiceTrayUI" method="_on_shoot_zombie_button_pressed"]
-[connection signal="pressed" from="DiceTrayUI/HBoxContainer/BarricadeButton" to="DiceTrayUI" method="_on_barricade_button_pressed"]
-[connection signal="pressed" from="DiceTrayUI/HBoxContainer/VehicleButton" to="DiceTrayUI" method="_on_vehicle_button_pressed"]
-[connection signal="pressed" from="BonusScreenUI/PanelContainer/VBoxContainer/DestroyZombiesButton" to="GameManager" method="_on_destroy_zombies_button_pressed"]
-[connection signal="pressed" from="BonusScreenUI/PanelContainer/VBoxContainer/FixVehicleButton" to="GameManager" method="_on_fix_vehicle_button_pressed"]
-[connection signal="pressed" from="BonusScreenUI/PanelContainer/VBoxContainer/NoZombiesButton" to="GameManager" method="_on_no_zombies_button_pressed"]
-[connection signal="pressed" from="BonusScreenUI/PanelContainer/VBoxContainer/FixBarricadeButton" to="GameManager" method="_on_fix_barricade_button_pressed"]
+[connection signal="pressed" from="DiceTrayUI/DiceSign/ReadyButton" to="DiceTrayUI" method="_on_ready_button_pressed"]
+[connection signal="pressed" from="DiceTrayUI/DiceSign/ResetButton" to="DiceTrayUI" method="_on_reset_button_pressed"]
+[connection signal="mouse_entered" from="DiceTrayUI/DiceSign/HBoxContainer/ShootZombieButton" to="DiceTrayUI" method="_on_shoot_zombie_button_mouse_entered"]
+[connection signal="mouse_exited" from="DiceTrayUI/DiceSign/HBoxContainer/ShootZombieButton" to="DiceTrayUI" method="_on_shoot_zombie_button_mouse_exited"]
+[connection signal="pressed" from="DiceTrayUI/DiceSign/HBoxContainer/ShootZombieButton" to="DiceTrayUI" method="_on_shoot_zombie_button_pressed"]
+[connection signal="mouse_entered" from="DiceTrayUI/DiceSign/HBoxContainer/BarricadeButton" to="DiceTrayUI" method="_on_barricade_button_mouse_entered"]
+[connection signal="mouse_exited" from="DiceTrayUI/DiceSign/HBoxContainer/BarricadeButton" to="DiceTrayUI" method="_on_barricade_button_mouse_exited"]
+[connection signal="pressed" from="DiceTrayUI/DiceSign/HBoxContainer/BarricadeButton" to="DiceTrayUI" method="_on_barricade_button_pressed"]
+[connection signal="mouse_entered" from="DiceTrayUI/DiceSign/HBoxContainer/VehicleButton" to="DiceTrayUI" method="_on_vehicle_button_mouse_entered"]
+[connection signal="mouse_exited" from="DiceTrayUI/DiceSign/HBoxContainer/VehicleButton" to="DiceTrayUI" method="_on_vehicle_button_mouse_exited"]
+[connection signal="pressed" from="DiceTrayUI/DiceSign/HBoxContainer/VehicleButton" to="DiceTrayUI" method="_on_vehicle_button_pressed"]
+[connection signal="pressed" from="BonusScreenUI/PanelContainer/VBoxContainer/DestroyZombiesButton" to="BonusScreenUI" method="_on_destroy_zombies_button_pressed"]
+[connection signal="pressed" from="BonusScreenUI/PanelContainer/VBoxContainer/FixVehicleButton" to="BonusScreenUI" method="_on_fix_vehicle_button_pressed"]
+[connection signal="pressed" from="BonusScreenUI/PanelContainer/VBoxContainer/NoZombiesButton" to="BonusScreenUI" method="_on_no_zombies_button_pressed"]
+[connection signal="pressed" from="BonusScreenUI/PanelContainer/VBoxContainer/FixBarricadeButton" to="BonusScreenUI" method="_on_fix_barricade_button_pressed"]
 [connection signal="pressed" from="GameOverUI/PanelContainer/VBoxContainer/TryAgainButton" to="." method="_on_try_again_button_pressed"]
 [connection signal="pressed" from="GameOverUI/PanelContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dgh3jg7g1b0sn" path="res://custom_resources/dice.gd" id="1_jf8of"]
 [ext_resource type="Script" uid="uid://bksi5xuwrh3ey" path="res://custom_resources/dice_side.gd" id="2_0w4w2"]
-[ext_resource type="Resource" uid="uid://1k3qmt4yp2re" path="res://dice/test_dice/dice_side_fist.tres" id="3_1vdix"]
-[ext_resource type="Resource" uid="uid://dhuh83qlvv2by" path="res://dice/test_dice/dice_side_shield.tres" id="4_xki0n"]
+[ext_resource type="Resource" uid="uid://d3o6ddlght2gt" path="res://dice/dice_sides/dice_side_hammer.tres" id="3_1vdix"]
+[ext_resource type="Resource" uid="uid://d1ruka7df2p1n" path="res://dice/dice_sides/dice_side_hammer_break.tres" id="4_xki0n"]
 
 [resource]
 script = ExtResource("1_jf8of")
-sides = Array[ExtResource("2_0w4w2")]([ExtResource("3_1vdix"), ExtResource("3_1vdix"), ExtResource("4_xki0n"), ExtResource("4_xki0n"), ExtResource("4_xki0n"), ExtResource("4_xki0n")])
+sides = Array[ExtResource("2_0w4w2")]([ExtResource("3_1vdix"), ExtResource("3_1vdix"), ExtResource("3_1vdix"), ExtResource("3_1vdix"), ExtResource("4_xki0n"), ExtResource("4_xki0n")])
 dice_type = 1
 metadata/_custom_type_script = "uid://dgh3jg7g1b0sn"

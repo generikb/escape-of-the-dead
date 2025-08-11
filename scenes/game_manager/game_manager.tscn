@@ -1,0 +1,45 @@
+[gd_scene load_steps=10 format=3 uid="uid://cmgy4tlylrku"]
+
+[ext_resource type="Script" uid="uid://buj6gnwpo7dyy" path="res://scenes/game_manager/game_manager.gd" id="1_hwd4i"]
+[ext_resource type="Script" uid="uid://d1i0qtkrav0if" path="res://scenes/game_manager/game_state_machine.gd" id="2_5icen"]
+[ext_resource type="Script" uid="uid://b0eriuhj3th35" path="res://scenes/game_manager/game_states/dice_select_phase.gd" id="3_g6d5r"]
+[ext_resource type="Script" uid="uid://clxh1ayjlvoep" path="res://scenes/game_manager/game_states/shoot_zombies_phase.gd" id="4_mon5u"]
+[ext_resource type="Script" uid="uid://c7oy5h3s5etd" path="res://scenes/game_manager/game_states/repair_barricade_phase.gd" id="5_ytj6e"]
+[ext_resource type="Script" uid="uid://cm5fwvt4ujmtp" path="res://scenes/game_manager/game_states/fix_vehicle_phase.gd" id="6_wk7cx"]
+[ext_resource type="Script" uid="uid://b05bfravsva4r" path="res://scenes/game_manager/game_states/zombies_attack_phase.gd" id="7_jphv7"]
+[ext_resource type="Script" uid="uid://di56frtc8uxdt" path="res://scenes/game_manager/game_states/select_reward_phase.gd" id="8_rsli6"]
+[ext_resource type="Script" uid="uid://c0bc4rdvm8w7i" path="res://scenes/game_manager/game_states/end_turn_phase.gd" id="9_s80ek"]
+
+[node name="GameManager" type="Node2D"]
+script = ExtResource("1_hwd4i")
+
+[node name="GameStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_5icen")
+initial_state = NodePath("DiceSelectPhase")
+
+[node name="DiceSelectPhase" type="Node" parent="GameStateMachine"]
+script = ExtResource("3_g6d5r")
+
+[node name="ShootZombiesPhase" type="Node" parent="GameStateMachine"]
+script = ExtResource("4_mon5u")
+state = 1
+
+[node name="RepairBarricadePhase" type="Node" parent="GameStateMachine"]
+script = ExtResource("5_ytj6e")
+state = 2
+
+[node name="FixVehiclePhase" type="Node" parent="GameStateMachine"]
+script = ExtResource("6_wk7cx")
+state = 3
+
+[node name="ZombiesAttackPhase" type="Node" parent="GameStateMachine"]
+script = ExtResource("7_jphv7")
+state = 4
+
+[node name="SelectRewardPhase" type="Node" parent="GameStateMachine"]
+script = ExtResource("8_rsli6")
+state = 5
+
+[node name="EndTurnPhase" type="Node" parent="GameStateMachine"]
+script = ExtResource("9_s80ek")
+state = 6

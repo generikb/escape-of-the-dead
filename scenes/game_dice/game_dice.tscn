@@ -1,0 +1,78 @@
+[gd_scene load_steps=12 format=3 uid="uid://hnx8djxqk2xy"]
+
+[ext_resource type="Texture2D" uid="uid://bkltfylk5ga6g" path="res://assets/CuteDice - AssetPack_v1.0/dice_side_shoot.png" id="1_kb8c0"]
+[ext_resource type="Script" uid="uid://c0nvo188hpcet" path="res://scenes/game_dice/game_dice.gd" id="1_w0y3y"]
+[ext_resource type="Texture2D" uid="uid://byjf5h70j54tn" path="res://assets/CuteDice - AssetPack_v1.0/dice_rolling.png" id="3_y4dcy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_35fyy"]
+size = Vector2(24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_slpbx"]
+atlas = ExtResource("3_y4dcy")
+region = Rect2(0, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bowr2"]
+atlas = ExtResource("3_y4dcy")
+region = Rect2(28, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8acxk"]
+atlas = ExtResource("3_y4dcy")
+region = Rect2(56, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lw5b"]
+atlas = ExtResource("3_y4dcy")
+region = Rect2(84, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hcwug"]
+atlas = ExtResource("3_y4dcy")
+region = Rect2(112, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bb65i"]
+atlas = ExtResource("3_y4dcy")
+region = Rect2(140, 0, 28, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ycgqa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_slpbx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bowr2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8acxk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2lw5b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hcwug")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bb65i")
+}],
+"loop": true,
+"name": &"rolling",
+"speed": 10.0
+}]
+
+[node name="GameDice" type="RigidBody2D" groups=["gamedice"]]
+position = Vector2(315, 178)
+collision_mask = 3
+gravity_scale = 0.0
+script = ExtResource("1_w0y3y")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_kb8c0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_35fyy")
+
+[node name="RollingAnimation" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ycgqa")
+animation = &"rolling"
+autoplay = "rolling"
+frame_progress = 0.381257
