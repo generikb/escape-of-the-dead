@@ -13,6 +13,9 @@ signal reward_fix_vehicle
 signal reward_no_zombies
 signal reward_fix_barricade
 
+signal zombie_attack
+signal zombie_attacks_complete
+
 signal zombie_killed
 signal barricade_repaired
 signal vehicle_repaired

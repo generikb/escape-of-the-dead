@@ -9,7 +9,12 @@ var tween = Tween
 func _ready() -> void:
 	blood_splatter.visible = false
 
-
+func zombie_attack() -> void:
+	tween = create_tween()
+	var original_position = self.position
+	print(original_position)
+	tween.tween_property(self, "position", Vector2(- 50, original_position.y), 0.5)
+	tween.tween_property(self, "position", original_position, 0.5)
 
 func remove_zombie() -> void:
 	print("zombie destroyed!")

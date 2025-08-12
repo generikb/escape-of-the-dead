@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://mnsfwdcdip45"]
+
+[ext_resource type="Texture2D" uid="uid://cja4ebuqs2g3u" path="res://assets/fence.png" id="1_aafyg"]
+[ext_resource type="Script" uid="uid://y0ym7mfx0466" path="res://scenes/fence_section.gd" id="2_olscx"]
+
+[node name="FenceSection" type="TextureRect" groups=["fence"]]
+custom_minimum_size = Vector2(20, 20)
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_aafyg")
+script = ExtResource("2_olscx")

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddsgvwlauhjns"]
+
+[ext_resource type="Texture2D" uid="uid://fpu3fh8fcbs8" path="res://assets/wave_meter.png" id="1_0l3px"]
+[ext_resource type="Script" uid="uid://cjniogucas1k0" path="res://scenes/wave_meter.gd" id="2_1tvne"]
+[ext_resource type="Texture2D" uid="uid://b71hjll3w6dvr" path="res://assets/wave_meter_arrow.png" id="2_xws6p"]
+
+[node name="WaveMeter" type="TextureRect"]
+offset_right = 100.0
+offset_bottom = 50.0
+texture = ExtResource("1_0l3px")
+script = ExtResource("2_1tvne")
+
+[node name="WaveMeterArrow" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+offset_right = 100.0
+offset_bottom = 50.0
+pivot_offset = Vector2(50, 50)
+texture = ExtResource("2_xws6p")

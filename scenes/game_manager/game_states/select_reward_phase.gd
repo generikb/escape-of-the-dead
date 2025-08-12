@@ -25,15 +25,13 @@ func reward_destroy_zombies()-> void:
 
 
 func reward_fix_barricade()-> void:
-	var barricade_health = game_manager.game_stats.barricade_health
-	barricade_health = clampf(barricade_health + 30.0, barricade_health, 100.0)
+	game_manager.game_stats.barricade_health = clampf(game_manager.game_stats.barricade_health + 30.0, game_manager.game_stats.barricade_health, 100.0)
 	next_state.emit(self, GameState.State.END_TURN)
 
 
 func reward_fix_vehicle()-> void:
-	var vehicle_health = game_manager.game_stats.vehicle_health
-	vehicle_health = clampf(vehicle_health + 10.0, vehicle_health, 100.0)
-	if vehicle_health >= 100.0:
+	game_manager.game_stats.vehicle_health = clampf(game_manager.game_stats.vehicle_health + 10.0, game_manager.game_stats.vehicle_health, 100.0)
+	if game_manager.game_stats.vehicle_health >= 100.0:
 		Events.game_over.emit(true)
 	next_state.emit(self, GameState.State.END_TURN)
 
