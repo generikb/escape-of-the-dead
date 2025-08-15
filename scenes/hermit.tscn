@@ -1,0 +1,84 @@
+[gd_scene load_steps=14 format=3 uid="uid://dokhh8x0l3yr6"]
+
+[ext_resource type="Texture2D" uid="uid://dgihi8xys35mu" path="res://assets/hermit_hammer.png" id="1_7cfsv"]
+[ext_resource type="Texture2D" uid="uid://ctyio47k7mito" path="res://assets/hermit_idle.png" id="2_5dljg"]
+[ext_resource type="Texture2D" uid="uid://b8qm3fa8layhw" path="res://assets/hermit_shoot.png" id="3_0ehy1"]
+[ext_resource type="Texture2D" uid="uid://yjmxw6o8306f" path="res://assets/hermit_wrench.png" id="4_c8y0x"]
+[ext_resource type="Script" uid="uid://crcusv6tlbsgw" path="res://scenes/hermit.gd" id="5_5dljg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fvwa7"]
+atlas = ExtResource("1_7cfsv")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jm2h"]
+atlas = ExtResource("1_7cfsv")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5j5r"]
+atlas = ExtResource("2_5dljg")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyn6v"]
+atlas = ExtResource("3_0ehy1")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45hwn"]
+atlas = ExtResource("3_0ehy1")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ao0co"]
+atlas = ExtResource("4_c8y0x")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2mvpe"]
+atlas = ExtResource("4_c8y0x")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cqid6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fvwa7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jm2h")
+}],
+"loop": true,
+"name": &"hammering",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5j5r")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dyn6v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_45hwn")
+}],
+"loop": true,
+"name": &"shooting",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ao0co")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2mvpe")
+}],
+"loop": true,
+"name": &"wrenching",
+"speed": 5.0
+}]
+
+[node name="Hermit" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_cqid6")
+animation = &"wrenching"
+script = ExtResource("5_5dljg")

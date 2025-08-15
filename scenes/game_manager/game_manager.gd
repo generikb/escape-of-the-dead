@@ -7,6 +7,8 @@ extends Node2D
 @onready var game_state_machine: GameStateMachine = $GameStateMachine
 @onready var fence: Fence = %Fence
 @onready var wave_meter: WaveMeter = %WaveMeter
+@onready var hermit: Hermit = %Hermit
+@onready var vehicle: Vehicle = %Vehicle
 
 
 var shoot_dice_this_turn : int = 0
@@ -43,6 +45,7 @@ func repair_barricade() -> void:
 func fix_vehicle() -> void:
 	print("vehicle repaired!")
 	game_stats.vehicle_health = clampf(game_stats.vehicle_health + 10.0, game_stats.vehicle_health, 100.0)
+	vehicle.repair_vehicle(game_stats.vehicle_health)
 	update_next_wave_zombies()
 	wave_meter.adjust_meter(game_stats.vehicle_health)
 	if game_stats.vehicle_health >= 100.0:

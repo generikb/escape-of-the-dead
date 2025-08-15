@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dbrgy6fiw4w7k"]
+[gd_scene load_steps=20 format=3 uid="uid://dbrgy6fiw4w7k"]
 
 [ext_resource type="PackedScene" uid="uid://cmgy4tlylrku" path="res://scenes/game_manager/game_manager.tscn" id="1_jyhfs"]
 [ext_resource type="Script" uid="uid://bbwmon1rgpfke" path="res://scenes/main.gd" id="1_tbgi4"]
@@ -23,12 +23,6 @@ size = Vector2(20, 370)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eb6dy"]
 size = Vector2(653, 20)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_muem4"]
-bg_color = Color(0.564706, 0.180392, 0.160784, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dp3eg"]
-bg_color = Color(0.870588, 0.74902, 0.537255, 1)
 
 [node name="Main" type="Node2D"]
 process_mode = 1
@@ -106,7 +100,6 @@ script = ExtResource("3_ya4ey")
 
 [node name="GameStats" type="VBoxContainer" parent="StatsUI"]
 unique_name_in_owner = true
-visible = false
 offset_left = 4.0
 offset_top = 4.0
 offset_right = 190.0
@@ -114,6 +107,7 @@ offset_bottom = 68.0
 script = ExtResource("4_eb6dy")
 
 [node name="ZombieCounter" type="HBoxContainer" parent="StatsUI/GameStats"]
+visible = false
 layout_mode = 2
 alignment = 2
 
@@ -147,6 +141,22 @@ custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 step = 0.1
 value = 69.0
+
+[node name="VehicleCounter" type="HBoxContainer" parent="StatsUI/GameStats"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="StatsUI/GameStats/VehicleCounter"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Vehicle:"
+horizontal_alignment = 2
+
+[node name="VehicleHealth" type="ProgressBar" parent="StatsUI/GameStats/VehicleCounter"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+step = 0.1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="StatsUI"]
 anchors_preset = 1
@@ -182,23 +192,6 @@ offset_bottom = -72.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "Zombies Next Turn:"
-
-[node name="VehicleCounter" type="HBoxContainer" parent="StatsUI"]
-offset_left = 119.0
-offset_top = 197.0
-offset_right = 169.0
-offset_bottom = 201.0
-alignment = 2
-
-[node name="VehicleHealth" type="ProgressBar" parent="StatsUI/VehicleCounter"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 3)
-layout_mode = 2
-theme = ExtResource("3_sugp2")
-theme_override_styles/background = SubResource("StyleBoxFlat_muem4")
-theme_override_styles/fill = SubResource("StyleBoxFlat_dp3eg")
-step = 0.1
-show_percentage = false
 
 [node name="DiceTrayUI" type="CanvasLayer" parent="." node_paths=PackedStringArray("game_manager")]
 unique_name_in_owner = true
@@ -441,8 +434,7 @@ offset_bottom = 336.0
 scale = Vector2(1.5, 1.5)
 
 [node name="Vehicle" parent="." instance=ExtResource("17_muem4")]
-unique_name_in_owner = true
-position = Vector2(145, 168)
+position = Vector2(48, 190)
 scale = Vector2(2, 2)
 
 [connection signal="pressed" from="DiceTrayUI/DiceSign/ReadyButton" to="DiceTrayUI" method="_on_ready_button_pressed"]

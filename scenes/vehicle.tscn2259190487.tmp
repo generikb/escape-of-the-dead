@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://s06kbio5ihpr"]
+
+[ext_resource type="Script" uid="uid://dued551qfs5d8" path="res://scenes/vehicle.gd" id="1_d0fkt"]
+[ext_resource type="Texture2D" uid="uid://c7g0ntel2li40" path="res://assets/blood_splatter.png" id="2_tvtne"]
+
+[node name="Vehicle" type="Node2D"]
+script = ExtResource("1_d0fkt")
+
+[node name="VehiclePart1" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("2_tvtne")
+
+[node name="VehiclePart2" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(25, 0)
+texture = ExtResource("2_tvtne")
+
+[node name="VehiclePart3" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(50, 0)
+texture = ExtResource("2_tvtne")
+
+[node name="VehiclePart4" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(75, 0)
+texture = ExtResource("2_tvtne")
+
+[node name="VehiclePart5" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(101, 1)
+texture = ExtResource("2_tvtne")
+
+[node name="VehiclePart6" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 22)
+texture = ExtResource("2_tvtne")
+
+[node name="VehiclePart7" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(25, 21)
+texture = ExtResource("2_tvtne")
+
+[node name="VehiclePart8" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(49, 22)
+texture = ExtResource("2_tvtne")
+
+[node name="VehiclePart9" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(75, 21)
+texture = ExtResource("2_tvtne")
+
+[node name="VehiclePart10" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(101, 22)
+texture = ExtResource("2_tvtne")

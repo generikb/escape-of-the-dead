@@ -1,5 +1,5 @@
 extends Node
-
+@warning_ignore_start("UNUSED_SIGNAL")
 signal start_turn
 signal end_turn
 

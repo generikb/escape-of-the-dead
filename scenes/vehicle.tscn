@@ -1,0 +1,60 @@
+[gd_scene load_steps=13 format=3 uid="uid://s06kbio5ihpr"]
+
+[ext_resource type="Script" uid="uid://dued551qfs5d8" path="res://scenes/vehicle.gd" id="1_d0fkt"]
+[ext_resource type="Texture2D" uid="uid://qxy4vd57bghe" path="res://assets/vehicle/base_chassis.png" id="2_srgl8"]
+[ext_resource type="Texture2D" uid="uid://4r4dpx3033nb" path="res://assets/vehicle/engine.png" id="3_mhnq0"]
+[ext_resource type="Texture2D" uid="uid://cvj75jfaj3epe" path="res://assets/vehicle/frame.png" id="4_wg7bq"]
+[ext_resource type="Texture2D" uid="uid://cpcve6o78kwgo" path="res://assets/vehicle/rear_panel.png" id="5_eewpg"]
+[ext_resource type="Texture2D" uid="uid://6oupiiplad4" path="res://assets/vehicle/front_panel.png" id="6_37whr"]
+[ext_resource type="Texture2D" uid="uid://dlue5ph8di2ni" path="res://assets/vehicle/door.png" id="7_1ltql"]
+[ext_resource type="Texture2D" uid="uid://clhfdq2kwoyvv" path="res://assets/vehicle/rear_tire.png" id="8_4nbl0"]
+[ext_resource type="Texture2D" uid="uid://yywhbpn3bjij" path="res://assets/vehicle/front_tire.png" id="9_wsn1b"]
+[ext_resource type="Texture2D" uid="uid://cx63b8hfjnrst" path="res://assets/vehicle/lights.png" id="10_syryi"]
+[ext_resource type="Texture2D" uid="uid://c1ullsqfw8ihc" path="res://assets/vehicle/windows.png" id="11_wmfnl"]
+[ext_resource type="Texture2D" uid="uid://dwtchmfvfjcnt" path="res://assets/vehicle/supplies.png" id="12_7oyyx"]
+
+[node name="Vehicle" type="Node2D"]
+script = ExtResource("1_d0fkt")
+
+[node name="BaseChassis" type="Sprite2D" parent="."]
+texture = ExtResource("2_srgl8")
+
+[node name="VehiclePart1" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("3_mhnq0")
+
+[node name="VehiclePart2" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("4_wg7bq")
+
+[node name="VehiclePart3" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("5_eewpg")
+
+[node name="VehiclePart4" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("6_37whr")
+
+[node name="VehiclePart5" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("7_1ltql")
+
+[node name="VehiclePart6" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("8_4nbl0")
+
+[node name="VehiclePart7" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("9_wsn1b")
+
+[node name="VehiclePart8" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("10_syryi")
+
+[node name="VehiclePart9" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("11_wmfnl")
+
+[node name="VehiclePart10" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("12_7oyyx")
