@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://cyfe6qxacakio"]
+[gd_scene load_steps=7 format=3 uid="uid://cyfe6qxacakio"]
 
 [ext_resource type="Texture2D" uid="uid://bkeiv20qx4cfq" path="res://assets/zombie1.png" id="1_1vlb3"]
 [ext_resource type="Script" uid="uid://b4c5orndv566w" path="res://scenes/zombie.gd" id="2_xepks"]
 [ext_resource type="Texture2D" uid="uid://c7g0ntel2li40" path="res://assets/blood_splatter.png" id="3_4gx57"]
+[ext_resource type="AudioStream" uid="uid://cxqolp0qkkeb1" path="res://assets/sounds/zombie_spawn.mp3" id="4_ycv6i"]
+[ext_resource type="AudioStream" uid="uid://dqef530hgh5hl" path="res://assets/sounds/zombie_attack.mp3" id="5_pjjxt"]
+[ext_resource type="AudioStream" uid="uid://b4hlpntdttew0" path="res://assets/sounds/zombie_dying.mp3" id="6_pjjxt"]
 
 [node name="Zombie" type="TextureRect" groups=["zombie"]]
 offset_top = 1.0
@@ -17,3 +20,15 @@ layout_mode = 0
 offset_right = 24.0
 offset_bottom = 24.0
 texture = ExtResource("3_4gx57")
+
+[node name="AudioZombieSpawn" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ycv6i")
+bus = &"SFX"
+
+[node name="AudioZombieAttack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_pjjxt")
+bus = &"SFX"
+
+[node name="AudioZombieDying" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_pjjxt")
+bus = &"SFX"

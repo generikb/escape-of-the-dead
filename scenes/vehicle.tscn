@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://s06kbio5ihpr"]
+[gd_scene load_steps=14 format=3 uid="uid://s06kbio5ihpr"]
 
 [ext_resource type="Script" uid="uid://dued551qfs5d8" path="res://scenes/vehicle.gd" id="1_d0fkt"]
 [ext_resource type="Texture2D" uid="uid://qxy4vd57bghe" path="res://assets/vehicle/base_chassis.png" id="2_srgl8"]
@@ -12,16 +12,17 @@
 [ext_resource type="Texture2D" uid="uid://cx63b8hfjnrst" path="res://assets/vehicle/lights.png" id="10_syryi"]
 [ext_resource type="Texture2D" uid="uid://c1ullsqfw8ihc" path="res://assets/vehicle/windows.png" id="11_wmfnl"]
 [ext_resource type="Texture2D" uid="uid://dwtchmfvfjcnt" path="res://assets/vehicle/supplies.png" id="12_7oyyx"]
+[ext_resource type="AudioStream" uid="uid://crjjx4rriugun" path="res://assets/sounds/repair_vehicle.mp3" id="13_mhnq0"]
 
 [node name="Vehicle" type="Node2D"]
 script = ExtResource("1_d0fkt")
 
-[node name="BaseChassis" type="Sprite2D" parent="."]
-texture = ExtResource("2_srgl8")
-
 [node name="VehiclePart1" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 texture = ExtResource("3_mhnq0")
+
+[node name="BaseChassis" type="Sprite2D" parent="."]
+texture = ExtResource("2_srgl8")
 
 [node name="VehiclePart2" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -58,3 +59,7 @@ texture = ExtResource("11_wmfnl")
 [node name="VehiclePart10" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 texture = ExtResource("12_7oyyx")
+
+[node name="AudioFixVehicle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_mhnq0")
+bus = &"SFX"

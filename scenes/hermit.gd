@@ -2,6 +2,7 @@ class_name Hermit
 extends AnimatedSprite2D
 
 var tween : Tween
+@onready var audio_fix_barricade: AudioStreamPlayer = $AudioFixBarricade
 
 func _ready() -> void:
 	play("idle")
@@ -14,6 +15,7 @@ func hermit_repair_barricade() -> void:
 	var original_position = self.position
 	tween.tween_property(self, "position", original_position + Vector2(40,0), .25)
 	tween.tween_callback(self.play.bind("hammering"))
+	tween.tween_callback(audio_fix_barricade.play)
 	tween.tween_interval(1.0)
 	tween.tween_callback(self.play.bind("idle"))
 	tween.tween_property(self, "position", original_position, .25)

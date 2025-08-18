@@ -1,6 +1,7 @@
 class_name Fence
 extends VBoxContainer
 
+
 const FENCE_SECTION = preload("res://scenes/fence_section.tscn")
 
 var children : Array[Node]

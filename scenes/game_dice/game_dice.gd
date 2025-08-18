@@ -5,6 +5,7 @@ extends RigidBody2D
 
 @onready var icon: Sprite2D = $Icon
 @onready var rolling_animation: AnimatedSprite2D = $RollingAnimation
+@onready var audio_dice_roll: AudioStreamPlayer = $AudioDiceRoll
 
 
 
@@ -24,14 +25,15 @@ func roll_dice() -> void:
 	icon.visible = false
 	rolling_animation.visible = true
 	linear_velocity = Vector2(-200, -200).normalized() * speed
-	await get_tree().create_timer(3.0).timeout
+	await get_tree().create_timer(2.0).timeout
 	linear_velocity = Vector2.ZERO
-	
 	var new_side = dice.roll_dice()
 	icon.texture = new_side.icon
 	
+	audio_dice_roll.play()
 	rolling_animation.visible = false
 	icon.visible = true
+	await get_tree().create_timer(1.0).timeout
 	
 	if new_side.success:
 		match dice.dice_type:

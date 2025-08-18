@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dbrgy6fiw4w7k"]
+[gd_scene load_steps=30 format=3 uid="uid://dbrgy6fiw4w7k"]
 
 [ext_resource type="PackedScene" uid="uid://cmgy4tlylrku" path="res://scenes/game_manager/game_manager.tscn" id="1_jyhfs"]
 [ext_resource type="Script" uid="uid://bbwmon1rgpfke" path="res://scenes/main.gd" id="1_tbgi4"]
@@ -16,7 +16,15 @@
 [ext_resource type="Script" uid="uid://dq83l07v2tmp7" path="res://scenes/game_over_ui.gd" id="8_tipki"]
 [ext_resource type="PackedScene" uid="uid://ck71ctapkxv5k" path="res://scenes/fence.tscn" id="14_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://ddsgvwlauhjns" path="res://scenes/wave_meter.tscn" id="15_jkv2x"]
+[ext_resource type="AudioStream" uid="uid://uwraqrlsr4it" path="res://assets/sounds/win_game.mp3" id="15_pm3ni"]
+[ext_resource type="AudioStream" uid="uid://dvcm46awjwog0" path="res://assets/sounds/lose_game_1.mp3" id="16_y6deb"]
 [ext_resource type="PackedScene" uid="uid://s06kbio5ihpr" path="res://scenes/vehicle.tscn" id="17_muem4"]
+[ext_resource type="AudioStream" uid="uid://biv55lm2gr4ct" path="res://assets/sounds/lose_game_2.mp3" id="17_og1vs"]
+[ext_resource type="AudioStream" uid="uid://dpk2lcgqyhyrs" path="res://assets/sounds/night_of_the_creeps.mp3" id="18_dp3eg"]
+[ext_resource type="PackedScene" uid="uid://dx3uynvvpto2b" path="res://scenes/audio_settings.tscn" id="19_0ld40"]
+[ext_resource type="Texture2D" uid="uid://by1jikbjfuoc5" path="res://assets/volume.png" id="20_gqmmt"]
+[ext_resource type="PackedScene" uid="uid://dpcosv0fwngev" path="res://scenes/shake_camera.tscn" id="24_y6deb"]
+[ext_resource type="PackedScene" uid="uid://dx57nrhu8nr3y" path="res://scenes/game_rules.tscn" id="25_og1vs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ya4ey"]
 size = Vector2(20, 370)
@@ -416,6 +424,30 @@ process_mode = 3
 layout_mode = 2
 text = "Quit Game"
 
+[node name="AudioGameWin" type="AudioStreamPlayer" parent="GameOverUI"]
+stream = ExtResource("15_pm3ni")
+bus = &"SFX"
+
+[node name="AudioGameLose1" type="AudioStreamPlayer" parent="GameOverUI"]
+stream = ExtResource("16_y6deb")
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="AudioGameLose2" type="AudioStreamPlayer" parent="GameOverUI"]
+stream = ExtResource("17_og1vs")
+bus = &"SFX"
+
+[node name="GameRules" parent="." instance=ExtResource("25_og1vs")]
+unique_name_in_owner = true
+z_index = 2
+z_as_relative = false
+y_sort_enabled = true
+offset_left = 185.0
+offset_top = 12.0
+offset_right = 487.0
+offset_bottom = 264.0
+size_flags_horizontal = 4
+
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
 offset_left = 321.0
@@ -445,6 +477,32 @@ unique_name_in_owner = true
 position = Vector2(145, 168)
 scale = Vector2(2, 2)
 
+[node name="AudioGameMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_dp3eg")
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[node name="AudioSettings" parent="." instance=ExtResource("19_0ld40")]
+offset_left = 228.0
+offset_top = 130.0
+offset_right = 438.0
+offset_bottom = 224.0
+
+[node name="AudioIcon" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 6.0
+offset_top = 7.0
+offset_right = 16.0
+offset_bottom = 16.0
+scale = Vector2(2, 2)
+texture = ExtResource("20_gqmmt")
+stretch_mode = 2
+
+[node name="ShakeCamera" parent="." instance=ExtResource("24_y6deb")]
+position = Vector2(320, 180)
+max_offset = Vector2(25, 25)
+
 [connection signal="pressed" from="DiceTrayUI/DiceSign/ReadyButton" to="DiceTrayUI" method="_on_ready_button_pressed"]
 [connection signal="pressed" from="DiceTrayUI/DiceSign/ResetButton" to="DiceTrayUI" method="_on_reset_button_pressed"]
 [connection signal="mouse_entered" from="DiceTrayUI/DiceSign/HBoxContainer/ShootZombieButton" to="DiceTrayUI" method="_on_shoot_zombie_button_mouse_entered"]
@@ -462,3 +520,6 @@ scale = Vector2(2, 2)
 [connection signal="pressed" from="BonusScreenUI/PanelContainer/VBoxContainer/FixBarricadeButton" to="BonusScreenUI" method="_on_fix_barricade_button_pressed"]
 [connection signal="pressed" from="GameOverUI/PanelContainer/VBoxContainer/TryAgainButton" to="." method="_on_try_again_button_pressed"]
 [connection signal="pressed" from="GameOverUI/PanelContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="gui_input" from="AudioIcon" to="." method="_on_audio_icon_gui_input"]
+[connection signal="mouse_entered" from="AudioIcon" to="." method="_on_audio_icon_mouse_entered"]
+[connection signal="mouse_exited" from="AudioIcon" to="." method="_on_audio_icon_mouse_exited"]

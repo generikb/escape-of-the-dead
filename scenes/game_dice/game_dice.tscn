@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://hnx8djxqk2xy"]
+[gd_scene load_steps=13 format=3 uid="uid://hnx8djxqk2xy"]
 
 [ext_resource type="Texture2D" uid="uid://bkltfylk5ga6g" path="res://assets/CuteDice - AssetPack_v1.0/dice_side_shoot.png" id="1_kb8c0"]
 [ext_resource type="Script" uid="uid://c0nvo188hpcet" path="res://scenes/game_dice/game_dice.gd" id="1_w0y3y"]
 [ext_resource type="Texture2D" uid="uid://byjf5h70j54tn" path="res://assets/CuteDice - AssetPack_v1.0/dice_rolling.png" id="3_y4dcy"]
+[ext_resource type="AudioStream" uid="uid://hdonrcdp51vk" path="res://assets/sounds/diceroll.mp3" id="4_y4dcy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_35fyy"]
 size = Vector2(24, 24)
@@ -76,3 +77,8 @@ sprite_frames = SubResource("SpriteFrames_ycgqa")
 animation = &"rolling"
 autoplay = "rolling"
 frame_progress = 0.381257
+
+[node name="AudioDiceRoll" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_y4dcy")
+volume_db = -3.0
+bus = &"SFX"
